@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "AbhayaLibreSemiBold";
+  src: local("AbhayaLibreSemiBold"),
+    url("./assets/fonts/AbhayaLibre-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "ActorRegular";
+  src: local("AbhayaLibreSemiBold"),
+    url("./assets/fonts/Actor-Regular.woff2") format("woff2");
+}
