@@ -1,12 +1,13 @@
-import { Typography } from '@mui/material';
 import React from 'react';
+import { Typography } from '@mui/material';
+import { ContainerComponent } from 'app/components';
 
 const HomePage = (): JSX.Element => {
   return (
-    <div>
+    <ContainerComponent>
       <span>HomePage</span>
       <Typography variant="h1">page title</Typography>
-    </div>
+    </ContainerComponent>
   );
 };
 
