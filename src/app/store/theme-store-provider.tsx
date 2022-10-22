@@ -20,10 +20,33 @@ export function useThemeStore(): Partial<ContextProps> {
 export const ThemeStoreProvider = ({ children }: Props): JSX.Element => {
   const theme = createTheme({
     typography: {
-      fontFamily: '"AbhayaLibreSemiBold", "Roboto", sans-serif',
+      fontFamily: '"AbhayaLibreSemiBold", "Roboto", serif',
+      fontSize: 16,
       h1: {
         fontFamily: '"ActorRegular", "Arial", sans-serif',
-        fontSize: 50,
+        fontSize: '2.25rem',
+        fontWeight: 700,
+      },
+    },
+    palette: {
+      background: {
+        default: '#121212',
+        paper: '#282828',
+      },
+      primary: {
+        main: '#366EFF',
+      },
+      error: {
+        main: '#FF0000',
+      },
+      warning: {
+        main: '#FFEB33',
+      },
+      success: {
+        main: '#10C200',
+      },
+      text: {
+        primary: '#F4F4F4',
       },
     },
   });

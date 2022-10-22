@@ -1,56 +1,33 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import ErrorIcon from '@mui/icons-material/Error';
-import { red } from '@mui/material/colors';
-import { styled } from '@mui/material/styles';
-
-const PaperElement = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body1,
-  position: 'absolute',
-  left: '50%',
-  top: '50%',
-  padding: '40px 10px 30px 10px',
-  width: '320px',
-  transform: 'translate(-50%, -50%)',
-  '& .MuiSvgIcon-root': {
-    position: 'absolute',
-    left: '50%',
-    top: '-85px',
-    transform: 'translateX(-50%)',
-    fontSize: '90px',
-    color: red[500],
-  },
-}));
+import { ErrorIcon, PaperElement } from './components';
 
 interface Props {
-  code?: string | null;
+  code?: string;
   header?: string;
   message?: string;
 }
 
-export const TechnicalIssues = (props: Props): JSX.Element => {
-  const {
-    code = '',
-    header = 'Произошла ошибка',
-    message = 'Попробуйте позже',
-  } = props;
-
+export const TechnicalIssues = ({
+  code = '',
+  header = 'Произошла ошибка',
+  message = 'Попробуйте позже',
+}: Props): JSX.Element => {
   return (
     <PaperElement elevation={3}>
+      <ErrorIcon />
       <Stack spacing={1} alignItems="center" sx={{ position: 'relative' }}>
-        <ErrorIcon />
         {code && code.length ? (
-          <Typography variant="h4" sx={{ fontWeight: 700 }}>
+          <Typography variant="h3" sx={{ fontWeight: 700 }}>
             {code}
           </Typography>
         ) : null}
-        <Typography variant="body1" component="h1" textAlign="center">
+        <Typography variant="h5" component="p" textAlign="center">
           {header}
         </Typography>
         {message ? (
-          <Typography variant="caption" textAlign="center">
+          <Typography variant="body1" textAlign="center">
             {message}
           </Typography>
         ) : null}

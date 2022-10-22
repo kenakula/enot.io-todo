@@ -2,3 +2,8 @@ export * from './error-boundary/error-boundary';
 export * from './technical-issues/technical-issues';
 export * from './loader/loader';
 export * from './container-component/container-component';
+export * from './header/header';
+export * from './checkbox-component/checkbox-component';
+export * from './todo/todo';
+export * from './today-list/today-list';
+export * from './todo-accordion/todo-accordion';

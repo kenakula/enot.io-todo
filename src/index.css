@@ -9,3 +9,24 @@
   src: local("AbhayaLibreSemiBold"),
     url("./assets/fonts/Actor-Regular.woff2") format("woff2");
 }
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(var(--vh, 1vh) * 100);
+  max-height: calc(var(--vh, 1vh) * 100);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.page::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+main {
+  flex-grow: 1;
+}
