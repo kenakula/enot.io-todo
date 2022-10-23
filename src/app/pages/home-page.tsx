@@ -8,18 +8,33 @@ import {
   TodoAccordion,
 } from 'app/components';
 import Box from '@mui/material/Box';
-import { useTodos } from 'app/store/hooks';
-import { useTodosStoreContext } from 'app/store/todos-store-provider';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { getPaginatedTodos } from 'app/store/hooks';
+import { useTodosStoreContext } from 'app/store/todos-store-provider';
+import { useQuery } from 'react-query';
+import { Collapse } from '@mui/material';
 
 const HomePage = (): JSX.Element => {
   const [showTodayTodos, setShowTodayTodos] = useState(true);
-  const { todosMap, writeTodos } = useTodosStoreContext();
+  const { todosMap, saveTodos, mapBuild } = useTodosStoreContext();
+  const [cursor, setCursor] = useState(1);
 
-  const { data, isError, isLoading } = useTodos();
+  const { data, isError, isLoading, isFetching } = useQuery(
+    ['todos', cursor],
+    () => getPaginatedTodos(cursor),
+    {
+      refetchOnWindowFocus: false,
+      keepPreviousData: true,
+    },
+  );
 
   const handleCheckBoxChange = (): void => {
     setShowTodayTodos(prev => !prev);
+  };
+
+  const handleShowMore = (): void => {
+    setCursor(prev => prev + 1);
   };
 
   useEffect(() => {
@@ -27,22 +42,11 @@ const HomePage = (): JSX.Element => {
       return;
     }
 
-    writeTodos(data);
-  }, [data, writeTodos]);
-
-  const renderDates = (): JSX.Element => {
-    console.log(todosMap);
-    return (
-      <Stack spacing={4}>
-        {todosMap.datesRecords.map(({ date, list }) => (
-          <TodoAccordion key={date.toLocaleString()} date={date} todos={list} />
-        ))}
-      </Stack>
-    );
-  };
+    saveTodos(data);
+  }, [data, saveTodos]);
 
   const renderContent = (): JSX.Element => {
-    if (isLoading) {
+    if (isLoading || !mapBuild) {
       return <Loader />;
     }
 
@@ -59,9 +63,28 @@ const HomePage = (): JSX.Element => {
             isChecked={showTodayTodos}
           />
         </Box>
-        {showTodayTodos && <TodayList list={todosMap.today} />}
+        <Collapse in={showTodayTodos}>
+          <TodayList list={todosMap.today} />
+        </Collapse>
         <TodoAccordion todos={todosMap.tomorrow} />
-        {renderDates()}
+        <Stack spacing={4}>
+          {todosMap.datesRecords.map(({ date, list }) => (
+            <TodoAccordion
+              key={date.toLocaleString()}
+              date={date}
+              todos={list}
+            />
+          ))}
+        </Stack>
+        <Box sx={{ display: 'flex', justifyContent: 'center', py: 2 }}>
+          <Button
+            onClick={handleShowMore}
+            variant="contained"
+            disabled={isFetching}
+          >
+            {isFetching ? 'Loading...' : 'Show more'}
+          </Button>
+        </Box>
       </Box>
     );
   };

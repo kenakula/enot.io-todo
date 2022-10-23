@@ -1,11 +1,13 @@
-import React, { createContext, useState, useMemo, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { createContext, useState, useMemo, useCallback } from 'react';
 import { DatesMapType, TodoType } from 'app/types';
 import { getTodosMap } from 'app/utils';
 import { DEFAULT_DATES_MAP } from 'app/shared';
 
 export type TodoContextType = {
   todosMap: DatesMapType;
-  writeTodos: (list: TodoType[]) => void;
+  saveTodos: (list: TodoType[]) => void;
+  mapBuild: boolean;
 };
 
 export const TodosContext = createContext<TodoContextType | null>(null);
@@ -16,23 +18,20 @@ interface ProviderProps {
 
 export const TodosStoreProvider: React.FC<ProviderProps> = ({ children }) => {
   const [todosMap, setTodosMap] = useState<DatesMapType>(DEFAULT_DATES_MAP);
-  const [todos, setTodos] = useState<TodoType[]>([]);
+  const [mapBuild, setMapBuild] = useState(false);
 
-  useEffect(() => {
-    if (todos.length) {
-      const map = getTodosMap(todos);
-      setTodosMap(map);
-    }
-  }, [todos]);
+  const saveTodos = useCallback((list: TodoType[]): void => {
+    const newMap = { ...todosMap };
+    const map = getTodosMap(list, newMap);
+    setTodosMap(map);
+    setMapBuild(true);
+  }, []);
 
   const value = useMemo(() => {
-    const writeTodos = (list: TodoType[]): void => {
-      setTodos(list);
-    };
-
     return {
       todosMap,
-      writeTodos,
+      saveTodos,
+      mapBuild,
     };
   }, [todosMap]);
 

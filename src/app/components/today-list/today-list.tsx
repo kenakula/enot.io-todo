@@ -1,8 +1,8 @@
+import React from 'react';
 import Stack from '@mui/material/Stack';
 import { TodoType } from 'app/types';
 import { TodayListElement } from './components';
 import { Todo } from '../todo/todo';
-import React from 'react';
 
 interface Props {
   list: TodoType[];

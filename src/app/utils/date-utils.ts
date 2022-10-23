@@ -9,8 +9,11 @@ export const sortTodosByDate = (todos: TodoType[]): TodoType[] => {
   return sorted;
 };
 
-export const getTodosMap = (todos: TodoType[]): DatesMapType => {
-  const datesMap: DatesMapType = { today: [], tomorrow: [], datesRecords: [] };
+export const getTodosMap = (
+  todos: TodoType[],
+  map: DatesMapType,
+): DatesMapType => {
+  const datesMap = map;
 
   if (todos.length) {
     todos.forEach(todo => {

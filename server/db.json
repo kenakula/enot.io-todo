@@ -197,7 +197,7 @@
       "title": "Aenean lectus.",
       "description": "In congue. Etiam justo. Etiam pretium iaculis justo.",
       "severety": "urgent",
-      "isDone": true,
+      "isDone": false,
       "date": "2022-10-22T14:45:54Z"
     },
     {
@@ -517,7 +517,7 @@
       "title": "Aliquam quis turpis eget elit sodales scelerisque.",
       "description": "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
       "severety": "significant",
-      "isDone": false,
+      "isDone": true,
       "date": "2022-10-22T20:32:18Z"
     },
     {
