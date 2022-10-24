@@ -14,7 +14,7 @@
 - json-server
 
 
-## Deployment
+## Запуск
 
 Чтобы запустить проект локально
 
@@ -25,7 +25,7 @@
 команда запустит json-server и фронт
 
 
-## Authors
+## Автор
 
-- [@kenakula](https://www.github.com/kenakula)
+- Кенан Агаев [@kenakula](https://www.github.com/kenakula)
 
