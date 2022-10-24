@@ -10,14 +10,17 @@ import {
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { getPaginatedTodos } from 'app/store/hooks';
+import { getPaginatedTodos } from 'app/store/queries';
 import { useTodosStoreContext } from 'app/store/todos-store-provider';
 import { useQuery } from 'react-query';
-import { Collapse } from '@mui/material';
 
 const HomePage = (): JSX.Element => {
   const [showTodayTodos, setShowTodayTodos] = useState(true);
-  const { todosMap, saveTodos, mapBuild } = useTodosStoreContext();
+  const {
+    todosMap: { today, tomorrow, datesRecords },
+    saveTodos,
+    mapBuild,
+  } = useTodosStoreContext();
   const [cursor, setCursor] = useState(1);
 
   const { data, isError, isLoading, isFetching } = useQuery(
@@ -63,12 +66,10 @@ const HomePage = (): JSX.Element => {
             isChecked={showTodayTodos}
           />
         </Box>
-        <Collapse in={showTodayTodos}>
-          <TodayList list={todosMap.today} />
-        </Collapse>
-        <TodoAccordion todos={todosMap.tomorrow} />
+        <TodayList list={today} />
+        <TodoAccordion todos={tomorrow} />
         <Stack spacing={4}>
-          {todosMap.datesRecords.map(({ date, list }) => (
+          {datesRecords.map(({ date, list }) => (
             <TodoAccordion
               key={date.toLocaleString()}
               date={date}

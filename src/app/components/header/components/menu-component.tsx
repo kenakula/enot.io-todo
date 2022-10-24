@@ -35,7 +35,7 @@ export const MenuComponent = ({
       <CheckboxComponent
         handler={handleCheckbox}
         isChecked={checkboxChecked}
-        label="Показывать новости"
+        label="Show news"
       />
     </Menu>
   );

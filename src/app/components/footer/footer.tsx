@@ -1,36 +1,38 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useNewsStoreContext } from 'app/store';
-import { getTrendingNews } from 'app/store/hooks';
-import React, { useEffect } from 'react';
+import { getTrendingNews } from 'app/store/queries';
 import { useQuery } from 'react-query';
 import { ContainerComponent } from '../container-component/container-component';
 import { MarqueeComponent } from './components/marque-component';
 
 export const Footer = (): JSX.Element => {
-  const { data, isLoading, isError } = useQuery(['news'], () =>
-    getTrendingNews(),
+  const { data, isLoading, isError } = useQuery(
+    ['news'],
+    () => getTrendingNews(),
+    { refetchOnWindowFocus: false },
   );
-  const { saveNews, newsList, showNews } = useNewsStoreContext();
-
-  useEffect(() => {
-    if (data) {
-      saveNews(data.results);
-    }
-  }, [data, saveNews]);
+  const { showNews } = useNewsStoreContext();
 
   const renderNews = (): JSX.Element | null => {
     if (isLoading) {
-      return <Typography variant="caption">loading ...</Typography>;
+      return (
+        <Typography variant="body1" color="primary">
+          loading ...
+        </Typography>
+      );
     }
 
     if (isError) {
       return (
-        <Typography variant="caption">some error occured, try later</Typography>
+        <Typography variant="body1" color="error">
+          some error occured, try later
+        </Typography>
       );
     }
 
-    return <MarqueeComponent list={newsList} />;
+    return <MarqueeComponent list={data?.results} />;
   };
 
   return (
@@ -56,7 +58,7 @@ export const Footer = (): JSX.Element => {
           }}
         >
           <Typography sx={{ flexShrink: 0, mr: 2 }}>Top news:</Typography>
-          {newsList.length ? renderNews() : null}
+          {renderNews()}
         </ContainerComponent>
       ) : null}
     </Box>

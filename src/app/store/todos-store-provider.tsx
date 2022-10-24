@@ -2,7 +2,12 @@
 import React, { createContext, useState, useMemo, useCallback } from 'react';
 import { DatesMapType, TodoType } from 'app/types';
 import { getTodosMap } from 'app/utils';
-import { DEFAULT_DATES_MAP } from 'app/shared';
+
+const DEFAULT_DATES_MAP: DatesMapType = {
+  today: [],
+  tomorrow: [],
+  datesRecords: [],
+};
 
 export type TodoContextType = {
   todosMap: DatesMapType;

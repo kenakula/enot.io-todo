@@ -6,7 +6,7 @@ import { TodoType } from 'app/types';
 import { MapTodoSeveretyToColor } from 'app/utils';
 import { TodoSwitch } from './components';
 import { grey } from '@mui/material/colors';
-import { useUpdateTodo } from 'app/store/hooks';
+import { useUpdateTodo } from 'app/store/queries';
 
 interface Props {
   todo: TodoType;

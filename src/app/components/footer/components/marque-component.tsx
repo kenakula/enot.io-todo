@@ -5,7 +5,7 @@ import Marquee from 'react-fast-marquee';
 import { styled, Typography } from '@mui/material';
 
 interface Props {
-  list: NewsType[];
+  list: NewsType[] | undefined;
 }
 
 const NewsContainer = styled(Typography)(({ theme }) => ({
@@ -28,11 +28,12 @@ export const MarqueeComponent = ({ list }: Props): JSX.Element => {
   return (
     <Box sx={{ overflowX: 'hidden', marginRight: '-32px' }}>
       <Marquee gradient={false} loop={0} speed={40}>
-        {list.map(item => (
-          <NewsContainer key={item.url} variant="body1">
-            {item.title}
-          </NewsContainer>
-        ))}
+        {list &&
+          list.map(item => (
+            <NewsContainer key={item.url} variant="body1">
+              {item.title}
+            </NewsContainer>
+          ))}
       </Marquee>
     </Box>
   );

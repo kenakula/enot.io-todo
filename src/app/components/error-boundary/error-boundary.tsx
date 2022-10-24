@@ -23,7 +23,7 @@ export class ErrorBoundary extends React.Component<any, StateProps> {
     if (this.state.errorInfo) {
       return (
         <TechnicalIssues
-          header="Что-то пошло не так. Обратитесь в поддержку"
+          header="Something went wrong"
           message={this.state.error && this.state.error.toString()}
         />
       );

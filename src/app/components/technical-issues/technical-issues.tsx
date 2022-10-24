@@ -11,8 +11,8 @@ interface Props {
 
 export const TechnicalIssues = ({
   code = '',
-  header = 'Произошла ошибка',
-  message = 'Попробуйте позже',
+  header = 'Error encountered',
+  message = 'Try later',
 }: Props): JSX.Element => {
   return (
     <PaperElement elevation={3}>

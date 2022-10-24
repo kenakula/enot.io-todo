@@ -4,12 +4,13 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { ContainerComponent } from '../container-component/container-component';
 import { MenuComponent, SettingsIcon } from './components';
-import { useNewsStoreContext } from 'app/store';
+import { useNewsStoreContext, useThemeStore } from 'app/store';
 
 export const Header = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const menuOpen = Boolean(anchorEl);
   const { showNews, toggleNewsVisibility } = useNewsStoreContext();
+  const { theme } = useThemeStore();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -36,7 +37,7 @@ export const Header = (): JSX.Element => {
     >
       <ContainerComponent
         sx={{
-          backgroundColor: '#222222',
+          backgroundColor: theme?.palette.common.black,
           padding: '13px 37px',
         }}
       >
@@ -53,7 +54,7 @@ export const Header = (): JSX.Element => {
           </IconButton>
         </Box>
         <MenuComponent
-          open={open}
+          open={menuOpen}
           handleClose={handleClose}
           anchor={anchorEl}
           handleCheckbox={handleCheckboxChange}

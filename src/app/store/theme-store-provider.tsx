@@ -33,6 +33,9 @@ export const ThemeStoreProvider = ({ children }: Props): JSX.Element => {
         default: '#121212',
         paper: '#282828',
       },
+      common: {
+        black: '#222222',
+      },
       primary: {
         main: '#366EFF',
       },

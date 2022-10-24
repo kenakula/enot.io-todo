@@ -669,7 +669,7 @@
       "title": "Integer a nibh.",
       "description": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
       "severety": "default",
-      "isDone": false,
+      "isDone": true,
       "date": "2022-10-24T15:26:58Z"
     },
     {

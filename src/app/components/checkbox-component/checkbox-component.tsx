@@ -7,9 +7,9 @@ import {
 } from './components';
 
 interface Props {
-  label?: string;
   handler: () => void;
   isChecked: boolean;
+  label?: string;
 }
 
 export const CheckboxComponent = ({

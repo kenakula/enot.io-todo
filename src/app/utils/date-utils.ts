@@ -1,14 +1,6 @@
 import { DatesMapType, TodoType } from 'app/types';
 import moment from 'moment';
 
-export const sortTodosByDate = (todos: TodoType[]): TodoType[] => {
-  const sorted = todos.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-  );
-
-  return sorted;
-};
-
 export const getTodosMap = (
   todos: TodoType[],
   map: DatesMapType,
