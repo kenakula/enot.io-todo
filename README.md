@@ -1,12 +1,31 @@
-# Enot.io test project
-Author (Агаев Кенан)[https://github.com/kenakula]
 
-## to start project
-npm run dev
+# Тестовое задание ToDo
 
-## stack
-- react
-- react-router-dom
+Тестовое задание соискателя на должность frontend разработчика
+
+
+
+## Использованные технологии
+
+- React + React Context + React router
+- typescript
 - react-query
-- react-context
+- material ui
 - json-server
+
+
+## Deployment
+
+Чтобы запустить проект локально
+
+```bash
+  npm run dev
+```
+
+команда запустит json-server и фронт
+
+
+## Authors
+
+- [@kenakula](https://www.github.com/kenakula)
+

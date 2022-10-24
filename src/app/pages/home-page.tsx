@@ -79,7 +79,8 @@ const HomePage = (): JSX.Element => {
         <Box sx={{ display: 'flex', justifyContent: 'center', py: 2 }}>
           <Button
             onClick={handleShowMore}
-            variant="contained"
+            variant="outlined"
+            color="inherit"
             disabled={isFetching}
           >
             {isFetching ? 'Loading...' : 'Show more'}
@@ -94,8 +95,7 @@ const HomePage = (): JSX.Element => {
       <ContainerComponent
         sx={{
           backgroundColor: '#222222',
-          borderBottomLeftRadius: '40px',
-          borderBottomRightRadius: '40px',
+          paddingBottom: '70px',
         }}
       >
         {renderContent()}

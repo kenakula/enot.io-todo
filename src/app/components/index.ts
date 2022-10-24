@@ -7,3 +7,4 @@ export * from './checkbox-component/checkbox-component';
 export * from './todo/todo';
 export * from './today-list/today-list';
 export * from './todo-accordion/todo-accordion';
+export * from './footer/footer';

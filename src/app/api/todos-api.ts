@@ -14,7 +14,7 @@ export const getLimitedTodos = async (
   limit: number,
 ): Promise<AxiosResponse<TodoType[], any>> => {
   const response = await apiClient.get<TodoType[]>(
-    `todos?_page=${page}&_limit=${limit}&_sort=date&_order_asc`,
+    `http://localhost:4000/todos?_page=${page}&_limit=${limit}&_sort=date&_order_asc`,
   );
 
   return response;
@@ -23,5 +23,5 @@ export const getLimitedTodos = async (
 export const updateTodo = async (
   data: TodoType,
 ): Promise<AxiosResponse<TodoType>> => {
-  return apiClient.put(`todos/${data.id}`, data);
+  return apiClient.put(`http://localhost:4000/todos/${data.id}`, data);
 };

@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { ContainerComponent } from '../container-component/container-component';
-import { SettingsIcon } from './components';
+import { MenuComponent, SettingsIcon } from './components';
+import { useNewsStoreContext } from 'app/store';
 
 export const Header = (): JSX.Element => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const { showNews, toggleNewsVisibility } = useNewsStoreContext();
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = (): void => {
+    setAnchorEl(null);
+  };
+
+  const handleCheckboxChange = (): void => {
+    toggleNewsVisibility();
+    handleClose();
+  };
+
   return (
     <Box
       component="header"
@@ -20,8 +38,6 @@ export const Header = (): JSX.Element => {
         sx={{
           backgroundColor: '#222222',
           padding: '13px 37px',
-          borderTopLeftRadius: '40px',
-          borderTopRightRadius: '40px',
         }}
       >
         <Box
@@ -32,10 +48,17 @@ export const Header = (): JSX.Element => {
           }}
         >
           <Typography variant="h1">To Do</Typography>
-          <IconButton color="inherit" sx={{ mr: -1 }}>
+          <IconButton onClick={handleClick} color="inherit" sx={{ mr: -1 }}>
             <SettingsIcon />
           </IconButton>
         </Box>
+        <MenuComponent
+          open={open}
+          handleClose={handleClose}
+          anchor={anchorEl}
+          handleCheckbox={handleCheckboxChange}
+          checkboxChecked={showNews}
+        />
       </ContainerComponent>
     </Box>
   );

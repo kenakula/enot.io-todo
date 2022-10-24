@@ -1,4 +1,4 @@
-import { ErrorBoundary, Header, Loader } from 'app/components';
+import { ErrorBoundary, Footer, Header, Loader } from 'app/components';
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HOME_PAGE } from './routes';
@@ -13,6 +13,7 @@ export const RouterComponent = (): JSX.Element => (
         <Routes>
           <Route path={HOME_PAGE} element={<HomePage />} />
         </Routes>
+        <Footer />
       </Suspense>
     </BrowserRouter>
   </ErrorBoundary>
